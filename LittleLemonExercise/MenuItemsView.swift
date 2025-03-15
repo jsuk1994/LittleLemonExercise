@@ -10,25 +10,23 @@ import SwiftUI
 struct MenuItemsView: View {
     
     var colomn: [GridItem] = [GridItem(),
-                                GridItem(),
-                                GridItem()]
+                              GridItem(),
+                              GridItem()]
     let GridItemInt = Range(0...11)
     
     var body: some View {
-         NavigationView{
-             ScrollView {
-                     LazyVGrid(columns: colomn) {
-                         ForEach(GridItemInt) { i in FoodItem(Index: i)}
-                             
-                 }
-                    .navigationTitle("Menu")
-                    .toolbar {
-                        ToolbarItem(placement: .topBarTrailing) {
-                            NavigationLink(destination: Text("viwe")) {
-                                Image(systemName: "house")
-                            }
-                        }
+        NavigationView{
+            ScrollView {
+                Food
+                
+            }
+            .navigationTitle("Menu")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    NavigationLink(destination: Text("viwe")) {
+                        Image(systemName: "house")
                     }
+                }
             }
         }
     }
@@ -49,10 +47,15 @@ extension MenuItemsView {
         }
     }
     
-    
-    var FoodItems: some View {
+    var Food: some View {
         VStack{
-           
+            VStack(alignment: .leading){
+                Text("Food")
+                .background(Color.red)
+            }
+            LazyVGrid(columns: colomn) {
+                ForEach(GridItemInt) { i in FoodItem(Index: i)}
             }
         }
     }
+}

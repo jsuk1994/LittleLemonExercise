@@ -12,29 +12,32 @@ struct MenuItemsView: View {
     var colomn: [GridItem] = [GridItem(),
                               GridItem(),
                               GridItem()]
-    let FoodCount = Range(0...11)
-    let DrinksCount = Range(0...7)
-    let DessertCount = Range(0...3)
+    let foodCount = Range(0...11)
+    let drinksCount = Range(0...7)
+    let dessertCount = Range(0...3)
+    @State var fitlerSheet: Bool = false
     
     var body: some View {
         NavigationView{
             ScrollView {
-                Food
-                Drinks
-                Dessert
+                food
+                drinks
+                dessert
             }
             .navigationTitle("Menu")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    NavigationLink(destination: Text("viwe")) {
+                    NavigationLink(destination: sheet) {
                         Image(systemName: "house")
                     }
                 }
             }
+            .padding(.horizontal, 8)
         }
     }
 }
 
+//Preview
 #Preview {
     MenuItemsView()
 }
@@ -45,7 +48,7 @@ struct MenuItemsView: View {
 extension MenuItemsView {
     
     //Food grid view
-    func FoodItem(Index: Int) -> some View {
+    func foodItem(Index: Int) -> some View {
         return VStack{
             Rectangle()
                 .frame(width: 110, height: 80)
@@ -53,23 +56,23 @@ extension MenuItemsView {
         }
     }
     
-    var Food: some View {
+    var food: some View {
         VStack{
-           
-                Text("Food")
+            
+            Text("Food")
                 .font(.title)
                 .fontWeight(.semibold)
-                .frame(width: 380, height: 40, alignment: .leading)
-                
+                .frame(width: 370, height: 40, alignment: .leading)
+            
             LazyVGrid(columns: colomn) {
-                ForEach(FoodCount) { i in FoodItem(Index: i)}
+                ForEach(foodCount) { i in foodItem(Index: i)}
             }
         }
     }
     
     
     //Drinks Grid view
-    func DrinkItem(Index: Int) -> some View {
+    func drinkItem(Index: Int) -> some View {
         return VStack{
             Rectangle()
                 .frame(width: 110, height: 80)
@@ -77,22 +80,22 @@ extension MenuItemsView {
         }
     }
     
-    var Drinks: some View {
+    var drinks: some View {
         VStack{
-           
-                Text("Drinks")
+            
+            Text("Drinks")
                 .font(.title)
                 .fontWeight(.semibold)
-                .frame(width: 380, height: 40, alignment: .leading)
-                
+                .frame(width: 370, height: 40, alignment: .leading)
+            
             LazyVGrid(columns: colomn) {
-                ForEach(DrinksCount) { i in DrinkItem(Index: i)}
+                ForEach(drinksCount) { i in drinkItem(Index: i)}
             }
         }
     }
     
     //Dessert Grid view
-    func DessertItem(Index: Int) -> some View {
+    func dessertItem(Index: Int) -> some View {
         return VStack{
             Rectangle()
                 .frame(width: 110, height: 80)
@@ -100,16 +103,42 @@ extension MenuItemsView {
         }
     }
     
-    var Dessert: some View {
+    var dessert: some View {
         VStack{
-           
-                Text("Dessert")
+            
+            Text("Dessert")
                 .font(.title)
                 .fontWeight(.semibold)
-                .frame(width: 380, height: 40, alignment: .leading)
-                
+                .frame(width: 370, height: 40, alignment: .leading)
+            
             LazyVGrid(columns: colomn) {
-                ForEach(DessertCount) { i in DessertItem(Index: i)}
+                ForEach(dessertCount) { i in dessertItem(Index: i)}
+            }
+        }
+    }
+    
+    var sheet: some View {
+        VStack{
+            VStack{
+                Text("SELECTED CATEGORIES")
+                List {
+                    Text("view")
+                    Text("view")
+                    Text("view")
+                    
+                }
+                .listStyle(.plain)
+            }
+            
+            VStack{
+                Text("SELECTED CATEGORIES")
+                List {
+                    Text("view")
+                    Text("view")
+                    Text("view")
+                    
+                }
+                .listStyle(.plain)
             }
         }
     }

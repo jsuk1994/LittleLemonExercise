@@ -12,13 +12,16 @@ struct MenuItemsView: View {
     var colomn: [GridItem] = [GridItem(),
                               GridItem(),
                               GridItem()]
-    let GridItemInt = Range(0...11)
+    let FoodCount = Range(0...11)
+    let DrinksCount = Range(0...7)
+    let DessertCount = Range(0...3)
     
     var body: some View {
         NavigationView{
             ScrollView {
                 Food
-                
+                Drinks
+                Dessert
             }
             .navigationTitle("Menu")
             .toolbar {
@@ -37,8 +40,11 @@ struct MenuItemsView: View {
 }
 
 
+
+//extension of MenuItemView to extra code
 extension MenuItemsView {
     
+    //Food grid view
     func FoodItem(Index: Int) -> some View {
         return VStack{
             Rectangle()
@@ -49,12 +55,61 @@ extension MenuItemsView {
     
     var Food: some View {
         VStack{
-            VStack(alignment: .leading){
+           
                 Text("Food")
-                .background(Color.red)
-            }
+                .font(.title)
+                .fontWeight(.semibold)
+                .frame(width: 380, height: 40, alignment: .leading)
+                
             LazyVGrid(columns: colomn) {
-                ForEach(GridItemInt) { i in FoodItem(Index: i)}
+                ForEach(FoodCount) { i in FoodItem(Index: i)}
+            }
+        }
+    }
+    
+    
+    //Drinks Grid view
+    func DrinkItem(Index: Int) -> some View {
+        return VStack{
+            Rectangle()
+                .frame(width: 110, height: 80)
+            Text("Drink \(Index)")
+        }
+    }
+    
+    var Drinks: some View {
+        VStack{
+           
+                Text("Drinks")
+                .font(.title)
+                .fontWeight(.semibold)
+                .frame(width: 380, height: 40, alignment: .leading)
+                
+            LazyVGrid(columns: colomn) {
+                ForEach(DrinksCount) { i in DrinkItem(Index: i)}
+            }
+        }
+    }
+    
+    //Dessert Grid view
+    func DessertItem(Index: Int) -> some View {
+        return VStack{
+            Rectangle()
+                .frame(width: 110, height: 80)
+            Text("Dessert \(Index)")
+        }
+    }
+    
+    var Dessert: some View {
+        VStack{
+           
+                Text("Dessert")
+                .font(.title)
+                .fontWeight(.semibold)
+                .frame(width: 380, height: 40, alignment: .leading)
+                
+            LazyVGrid(columns: colomn) {
+                ForEach(DessertCount) { i in DessertItem(Index: i)}
             }
         }
     }

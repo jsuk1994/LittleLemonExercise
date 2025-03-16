@@ -16,6 +16,9 @@ struct MenuItemsView: View {
     let drinksCount = Range(0...7)
     let dessertCount = Range(0...3)
     @State var showSheet: Bool = false
+    @State var menuItem = MenuItemDetailView()
+    @State var showDetailSheet: Bool = false
+    
     
     var body: some View {
         NavigationView{
@@ -73,6 +76,12 @@ extension MenuItemsView {
             
             LazyVGrid(columns: colomn) {
                 ForEach(foodCount) { i in foodItem(Index: i)}
+                    .onTapGesture {
+                        showDetailSheet = true
+                    }
+                    .fullScreenCover(isPresented: $showDetailSheet) {
+                        MenuItemDetailView()
+                    }
             }
         }
     }

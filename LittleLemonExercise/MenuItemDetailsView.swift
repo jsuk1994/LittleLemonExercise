@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MenuItemDetailView: View {
+struct MenuItemDetailsView: View {
     
     @Environment(\.presentationMode) var presentationMode
     
@@ -39,5 +39,5 @@ struct MenuItemDetailView: View {
 }
 
 #Preview {
-    MenuItemDetailView()
+    MenuItemDetailsView()
 }

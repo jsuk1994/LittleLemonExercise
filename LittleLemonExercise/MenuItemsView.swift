@@ -16,7 +16,7 @@ struct MenuItemsView: View {
     let drinksCount = Range(0...7)
     let dessertCount = Range(0...3)
     @State var showSheet: Bool = false
-    @State var menuItem = MenuItemDetailView()
+    @State var menuItem = MenuItemDetailsView()
     @State var showDetailSheet: Bool = false
     
     
@@ -80,7 +80,7 @@ extension MenuItemsView {
                         showDetailSheet = true
                     }
                     .fullScreenCover(isPresented: $showDetailSheet) {
-                        MenuItemDetailView()
+                        MenuItemDetailsView()
                     }
             }
         }

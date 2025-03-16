@@ -15,7 +15,7 @@ struct MenuItemsView: View {
     let foodCount = Range(0...11)
     let drinksCount = Range(0...7)
     let dessertCount = Range(0...3)
-    @State var fitlerSheet: Bool = false
+    @State var showSheet: Bool = false
     
     var body: some View {
         NavigationView{
@@ -27,15 +27,22 @@ struct MenuItemsView: View {
             .navigationTitle("Menu")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    NavigationLink(destination: sheet) {
-                        Image(systemName: "house")
+                    Button {
+                        showSheet.toggle()
+                    } label: {
+                        Image(systemName: "slider.horizontal.3")
                     }
+                    .sheet(isPresented: $showSheet) {
+                        MenuItemsOptionView()
+                    }
+                    .clipShape(.rect(cornerRadius: 40))
                 }
             }
-            .padding(.horizontal, 8)
         }
+        .padding(.horizontal, 8)
     }
 }
+
 
 //Preview
 #Preview {
@@ -116,30 +123,6 @@ extension MenuItemsView {
             }
         }
     }
-    
-    var sheet: some View {
-        VStack{
-            VStack{
-                Text("SELECTED CATEGORIES")
-                List {
-                    Text("view")
-                    Text("view")
-                    Text("view")
-                    
-                }
-                .listStyle(.plain)
-            }
-            
-            VStack{
-                Text("SELECTED CATEGORIES")
-                List {
-                    Text("view")
-                    Text("view")
-                    Text("view")
-                    
-                }
-                .listStyle(.plain)
-            }
-        }
-    }
 }
+
+

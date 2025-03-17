@@ -6,24 +6,10 @@
 //
 import SwiftUI
 
-class MenuItemViewModel: MenuItemProtocol {
-    var id: UUID
+class MenuItemMockData: ObservableObject  {
     
-    var price: Double = 0.0
-    
-    var title: String = ""
-    
-    var menuCategory: MenuCategory
-    
-    var orderCount: Int = 0
-    
-    var price2: Int = 0
-    
-    var ingredient: [Ingredient] = []
-    
-    
-    let food : [MenuItemModel] = [
-        MenuItemModel(title: "food1", ingredients: [.Broccoli, .Pasta, .Spinach, .TomatoSauce, .Carrot]),
+    @Published var food : [MenuItemModel] = [
+        MenuItemModel(title: "food1", ingredient: [.Broccoli, .Pasta, .Spinach, .TomatoSauce, .Carrot]),
         MenuItemModel(title: "food2", ingredients: [.Broccoli, .Pasta, .Spinach, .TomatoSauce, .Carrot]),
         MenuItemModel(title: "food3", ingredients: [.Broccoli, .Pasta, .Spinach, .TomatoSauce, .Carrot]),
         MenuItemModel(title: "food4", ingredients: [.Broccoli, .Pasta, .Spinach, .TomatoSauce, .Carrot]),
@@ -38,7 +24,7 @@ class MenuItemViewModel: MenuItemProtocol {
         
     ]
     
-    let drink: [MenuItemModel] = [
+    @Published var drink: [MenuItemModel] = [
         MenuItemModel(title: "drink1", ingredients: [.Carbondioxide, .suger]),
         MenuItemModel(title: "drink2", ingredients: [.Carbondioxide, .suger]),
         MenuItemModel(title: "drink3", ingredients: [.Carbondioxide, .suger]),
@@ -49,7 +35,7 @@ class MenuItemViewModel: MenuItemProtocol {
         MenuItemModel(title: "drink8", ingredients: [.Carbondioxide, .suger]),
         ]
     
-    let dessert: [MenuItemModel] = [
+    @Published var dessert: [MenuItemModel] = [
         MenuItemModel(title: "dessert1", ingredients: [.eggs, .flour, .suger]),
         MenuItemModel(title: "dessert2", ingredients: [.eggs, .flour, .suger]),
         MenuItemModel(title: "dessert3", ingredients: [.eggs, .flour, .suger]),

@@ -19,6 +19,8 @@ struct MenuItemsView: View {
     @State var menuItem = MenuItemDetailsView()
     @State var showDetailSheet: Bool = false
     
+    @ObservedObject var foodViewModel = MenuItemMockData()
+    
     
     var body: some View {
         NavigationView{
@@ -58,13 +60,13 @@ struct MenuItemsView: View {
 extension MenuItemsView {
     
     //Food grid view
-    func foodItem(Index: Int) -> some View {
-        return VStack{
-            Rectangle()
-                .frame(width: 110, height: 80)
-            Text("Food \(Index)")
-        }
-    }
+//    func foodItem(data: [MenuItemModel]) -> some View {
+//        return VStack{
+//            Rectangle()
+//                .frame(width: 110, height: 80)
+//            Text("Food \(data)")
+//        }
+//    }
     
     var food: some View {
         VStack{
@@ -75,7 +77,12 @@ extension MenuItemsView {
                 .frame(width: 370, height: 40, alignment: .leading)
             
             LazyVGrid(columns: colomn) {
-                ForEach(foodCount) { i in foodItem(Index: i)}
+                ForEach(foodViewModel.food) { food in
+                    VStack {
+                        Rectangle()
+                            .frame(width: 110, height: 80)
+                        Text(food.title)
+                    }}
                     .onTapGesture {
                         showDetailSheet = true
                     }
@@ -88,13 +95,13 @@ extension MenuItemsView {
     
     
     //Drinks Grid view
-    func drinkItem(Index: Int) -> some View {
-        return VStack{
-            Rectangle()
-                .frame(width: 110, height: 80)
-            Text("Drink \(Index)")
-        }
-    }
+//    func drinkItem(Index: Int) -> some View {
+//        return VStack{
+//            Rectangle()
+//                .frame(width: 110, height: 80)
+//            Text("Drink \(Index)")
+//        }
+//    }
     
     var drinks: some View {
         VStack{
@@ -105,19 +112,24 @@ extension MenuItemsView {
                 .frame(width: 370, height: 40, alignment: .leading)
             
             LazyVGrid(columns: colomn) {
-                ForEach(drinksCount) { i in drinkItem(Index: i)}
+                ForEach(foodViewModel.drink) { drink in
+                    VStack {
+                        Rectangle()
+                            .frame(width: 110, height: 80)
+                        Text(drink.title)
+                    }}
             }
         }
     }
     
     //Dessert Grid view
-    func dessertItem(Index: Int) -> some View {
-        return VStack{
-            Rectangle()
-                .frame(width: 110, height: 80)
-            Text("Dessert \(Index)")
-        }
-    }
+//    func dessertItem(Index: Int) -> some View {
+//        return VStack{
+//            Rectangle()
+//                .frame(width: 110, height: 80)
+//            Text("Dessert \(Index)")
+//        }
+//    }
     
     var dessert: some View {
         VStack{
@@ -128,7 +140,12 @@ extension MenuItemsView {
                 .frame(width: 370, height: 40, alignment: .leading)
             
             LazyVGrid(columns: colomn) {
-                ForEach(dessertCount) { i in dessertItem(Index: i)}
+                ForEach(foodViewModel.dessert) { dessert in
+                    VStack {
+                        Rectangle()
+                            .frame(width: 110, height: 80)
+                        Text(dessert.title)
+                    }}
             }
         }
     }

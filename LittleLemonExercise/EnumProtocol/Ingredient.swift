@@ -8,13 +8,13 @@
 import Foundation
 
 enum Ingredient: String {
-    case Spinach
-    case Broccoli
-    case Carrot
-    case Pasta
-    case TomatoSauce
-    case Carbondioxide
-    case suger
-    case eggs
-    case flour
+    case Spinach = "spinach"
+    case Broccoli = "broccoli"
+    case Carrot = "carrot"
+    case Pasta = "pasta"
+    case TomatoSauce = "tomato sauce"
+    case Carbondioxide = "carbondioxide"
+    case suger = "suger"
+    case eggs = "eggs"
+    case flour = "flour"
 }

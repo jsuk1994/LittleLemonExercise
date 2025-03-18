@@ -12,15 +12,12 @@ struct MenuItemsView: View {
     var colomn: [GridItem] = [GridItem(),
                               GridItem(),
                               GridItem()]
-    let foodCount = Range(0...11)
-    let drinksCount = Range(0...7)
-    let dessertCount = Range(0...3)
+    
     @State var showSheet: Bool = false
-    @State var menuItem = MenuItemDetailsView()
     @State var showDetailSheet: Bool = false
     
-    @ObservedObject var foodViewModel = MenuItemMockData()
-    
+    @ObservedObject var menuItems: MenuViewViewModel = MenuViewViewModel()
+    @State var item1: MenuItemModel
     
     var body: some View {
         NavigationView{
@@ -51,7 +48,7 @@ struct MenuItemsView: View {
 
 //Preview
 #Preview {
-    MenuItemsView()
+    MenuItemsView(item1: MenuItemModel(id: UUID(), price: 11.00, title: "food 1", menuCategory: .Food, orderCount: 11, price2: 11, ingredient: [.Broccoli,.Carrot,.Pasta,.Spinach,.TomatoSauce]))
 }
 
 
@@ -77,18 +74,19 @@ extension MenuItemsView {
                 .frame(width: 370, height: 40, alignment: .leading)
             
             LazyVGrid(columns: colomn) {
-                ForEach(foodViewModel.food) { food in
+                ForEach(menuItems.foodMenuItems) { food in
                     VStack {
                         Rectangle()
                             .frame(width: 110, height: 80)
                         Text(food.title)
-                    }}
+                    }
                     .onTapGesture {
                         showDetailSheet = true
                     }
                     .fullScreenCover(isPresented: $showDetailSheet) {
-                        MenuItemDetailsView()
+                        MenuItemDetailsView(item1: food)
                     }
+                }
             }
         }
     }
@@ -112,7 +110,7 @@ extension MenuItemsView {
                 .frame(width: 370, height: 40, alignment: .leading)
             
             LazyVGrid(columns: colomn) {
-                ForEach(foodViewModel.drink) { drink in
+                ForEach(menuItems.drinkMenuItems) { drink in
                     VStack {
                         Rectangle()
                             .frame(width: 110, height: 80)
@@ -140,7 +138,7 @@ extension MenuItemsView {
                 .frame(width: 370, height: 40, alignment: .leading)
             
             LazyVGrid(columns: colomn) {
-                ForEach(foodViewModel.dessert) { dessert in
+                ForEach(menuItems.dessertMenuItems) { dessert in
                     VStack {
                         Rectangle()
                             .frame(width: 110, height: 80)

@@ -10,6 +10,9 @@ import SwiftUI
 struct MenuItemDetailsView: View {
     
     @Environment(\.presentationMode) var presentationMode
+    var item1: MenuItemModel
+    
+    
     
     var body: some View {
         NavigationView {
@@ -19,11 +22,13 @@ struct MenuItemDetailsView: View {
                     .frame(width: 200, height: 300)
                 
                 Text("Price:")
-                Text("10.99")
+                Text(String(item1.price))
                 Text("Ordered:")
-                Text("1,000")
+                Text(String(item1.orderCount))
                 Text("Ingredients:")
-                Text("spinach,\nbrocloy,\ncarrot")
+                VStack{
+                    ForEach(item1.ingredient, id: \.self){ i in Text(i.rawValue)}
+                }
             }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -39,5 +44,5 @@ struct MenuItemDetailsView: View {
 }
 
 #Preview {
-    MenuItemDetailsView()
+    MenuItemDetailsView(item1: MenuItemModel(id: UUID(), price: 11.00, title: "food 1", menuCategory: .Food, orderCount: 11, price2: 11, ingredient: [.Broccoli,.Carrot,.Pasta,.Spinach,.TomatoSauce]))
 }

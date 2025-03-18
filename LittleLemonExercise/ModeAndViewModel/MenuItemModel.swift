@@ -6,7 +6,7 @@
 //
 import Foundation
 
-struct MenuItemModel: MenuItemProtocol  {
+struct MenuItemModel: MenuItemProtocol, Identifiable  {
     var id: UUID
     
     var price: Double

@@ -8,7 +8,7 @@ import Foundation
 
 class MenuViewViewModel: ObservableObject {
    
-    var foodMenuItems: [MenuItemModel] = [
+    @Published var foodMenuItems: [MenuItemModel] = [
         MenuItemModel(id: UUID(), price: 11.00, title: "food 1", menuCategory: .Food, orderCount: 11, price2: 11, ingredient: [.Broccoli,.Carrot,.Pasta,.Spinach,.TomatoSauce]),
         MenuItemModel(id: UUID(), price: 12.00, title: "food 2", menuCategory: .Food, orderCount: 12, price2: 12, ingredient: [.Broccoli,.Carrot,.Pasta,.Spinach,.TomatoSauce]),
         MenuItemModel(id: UUID(), price: 13.00, title: "food 3", menuCategory: .Food, orderCount: 13, price2: 13, ingredient: [.Broccoli,.Carrot,.Pasta,.Spinach,.TomatoSauce]),
@@ -23,7 +23,7 @@ class MenuViewViewModel: ObservableObject {
         MenuItemModel(id: UUID(), price: 22.00, title: "food 12", menuCategory: .Food, orderCount: 22, price2: 22, ingredient: [.Broccoli,.Carrot,.Pasta,.Spinach,.TomatoSauce]),
     ]
     
-    var drinkMenuItems: [MenuItemModel] = [
+    @Published var drinkMenuItems: [MenuItemModel] = [
         MenuItemModel(id: UUID(), price: 11.00, title: "drink 1", menuCategory: .Drink, orderCount: 11, price2: 11, ingredient: [.Carbondioxide,.suger,]),
         MenuItemModel(id: UUID(), price: 12.00, title: "drink 2", menuCategory: .Drink, orderCount: 12, price2: 12, ingredient: [.Carbondioxide,.suger,]),
         MenuItemModel(id: UUID(), price: 13.00, title: "drink 3", menuCategory: .Drink, orderCount: 13, price2: 13, ingredient: [.Carbondioxide,.suger,]),
@@ -34,7 +34,7 @@ class MenuViewViewModel: ObservableObject {
         MenuItemModel(id: UUID(), price: 18.00, title: "drink 8", menuCategory: .Drink, orderCount: 18, price2: 18, ingredient: [.Carbondioxide,.suger,]),
     ]
     
-    var dessertMenuItems: [MenuItemModel] = [
+    @Published var dessertMenuItems: [MenuItemModel] = [
         MenuItemModel(id: UUID(), price: 11.00, title: "dessert 1", menuCategory: .Dessert, orderCount: 11, price2: 11, ingredient: [.eggs,.flour,.suger]),
         MenuItemModel(id: UUID(), price: 12.00, title: "dessert 2", menuCategory: .Dessert, orderCount: 12, price2: 12, ingredient: [.eggs,.flour,.suger]),
         MenuItemModel(id: UUID(), price: 13.00, title: "dessert 3", menuCategory: .Dessert, orderCount: 13, price2: 13, ingredient: [.eggs,.flour,.suger]),

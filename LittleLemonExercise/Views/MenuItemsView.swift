@@ -8,16 +8,14 @@
 import SwiftUI
 
 struct MenuItemsView: View {
-    
-    var colomn: [GridItem] = [GridItem(),
-                              GridItem(),
-                              GridItem()]
+    var colomn: [GridItem] = [GridItem(.flexible()),
+                              GridItem(.flexible()),
+                              GridItem(.flexible())]
     
     @State var showSheet: Bool = false
     @State var showDetailSheet: Bool = false
-    
-    @ObservedObject var menuItems: MenuViewViewModel = MenuViewViewModel()
-    @State var item1: MenuItemModel
+    @StateObject var menuItems: MenuViewViewModel = MenuViewViewModel()
+    @State var MenuItemModel: MenuItemModel? = nil
     
     var body: some View {
         NavigationView{
@@ -48,7 +46,7 @@ struct MenuItemsView: View {
 
 //Preview
 #Preview {
-    MenuItemsView(item1: MenuItemModel(id: UUID(), price: 11.00, title: "food 1", menuCategory: .Food, orderCount: 11, price2: 11, ingredient: [.Broccoli,.Carrot,.Pasta,.Spinach,.TomatoSauce]))
+    MenuItemsView()
 }
 
 
@@ -67,7 +65,6 @@ extension MenuItemsView {
     
     var food: some View {
         VStack{
-            
             Text("Food")
                 .font(.title)
                 .fontWeight(.semibold)
@@ -81,10 +78,11 @@ extension MenuItemsView {
                         Text(food.title)
                     }
                     .onTapGesture {
+                        MenuItemModel = food
                         showDetailSheet = true
                     }
-                    .fullScreenCover(isPresented: $showDetailSheet) {
-                        MenuItemDetailsView(item1: food)
+                    .fullScreenCover(item: $MenuItemModel) { food in
+                        MenuItemDetailsView(itemModel: food)
                     }
                 }
             }
@@ -115,7 +113,15 @@ extension MenuItemsView {
                         Rectangle()
                             .frame(width: 110, height: 80)
                         Text(drink.title)
-                    }}
+                    }
+                    .onTapGesture {
+                        MenuItemModel = drink
+                        showDetailSheet = true
+                    }
+                    .fullScreenCover(item: $MenuItemModel){ drink in
+                        MenuItemDetailsView(itemModel: drink)
+                    }
+                }
             }
         }
     }
@@ -143,7 +149,14 @@ extension MenuItemsView {
                         Rectangle()
                             .frame(width: 110, height: 80)
                         Text(dessert.title)
-                    }}
+                    }
+                    .onTapGesture {
+                        MenuItemModel = dessert
+                        showDetailSheet = true
+                    }
+                    .fullScreenCover(item: $MenuItemModel){ dessert in
+                        MenuItemDetailsView(itemModel: dessert)}
+                }
             }
         }
     }

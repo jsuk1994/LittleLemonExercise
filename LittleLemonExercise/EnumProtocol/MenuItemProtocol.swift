@@ -6,7 +6,7 @@
 //
 import Foundation
 
-protocol MenuItemProtocol {
+protocol MenuItemProtocol: Identifiable {
     var id: UUID { get }
     var price: Double { get }
     var title: String { get }

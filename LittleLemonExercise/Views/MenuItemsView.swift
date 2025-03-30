@@ -15,7 +15,7 @@ struct MenuItemsView: View {
     @State var showSheet: Bool = false
     @State var showDetailSheet: Bool = false
     @StateObject var menuItems: MenuViewViewModel = MenuViewViewModel()
-    @State var MenuItemModel: MenuItemModel? = nil
+    @State var menuItemModel: MenuItemModel? = nil
     
     var body: some View {
         NavigationView{
@@ -78,10 +78,10 @@ extension MenuItemsView {
                         Text(food.title)
                     }
                     .onTapGesture {
-                        MenuItemModel = food
+                        menuItemModel = food
                         showDetailSheet = true
                     }
-                    .fullScreenCover(item: $MenuItemModel) { food in
+                    .fullScreenCover(item: $menuItemModel) { food in
                         MenuItemDetailsView(itemModel: food)
                     }
                 }
@@ -115,10 +115,10 @@ extension MenuItemsView {
                         Text(drink.title)
                     }
                     .onTapGesture {
-                        MenuItemModel = drink
+                        menuItemModel = drink
                         showDetailSheet = true
                     }
-                    .fullScreenCover(item: $MenuItemModel){ drink in
+                    .fullScreenCover(item: $menuItemModel){ drink in
                         MenuItemDetailsView(itemModel: drink)
                     }
                 }
@@ -151,10 +151,10 @@ extension MenuItemsView {
                         Text(dessert.title)
                     }
                     .onTapGesture {
-                        MenuItemModel = dessert
+                        menuItemModel = dessert
                         showDetailSheet = true
                     }
-                    .fullScreenCover(item: $MenuItemModel){ dessert in
+                    .fullScreenCover(item: $menuItemModel){ dessert in
                         MenuItemDetailsView(itemModel: dessert)}
                 }
             }
